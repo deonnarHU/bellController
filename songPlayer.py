@@ -46,8 +46,8 @@ def noteSelector(x):
 def playSong(songTitle):
     song = readSong(songTitle)
     #song = readSong("song0001.json")
-    h = song[noteList]
-    ht = song[noteTime]
+    h = song["noteList"]
+    ht = song["noteTime"]
     i = 0
     for x in h:
         timerOnName = "t" + str(i) + "On"
