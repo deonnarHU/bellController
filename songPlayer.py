@@ -8,6 +8,10 @@ led1 = LED(17)
 led2 = LED(27)
 led3 = LED(22)
 led4 = LED(23)
+led1.on()
+led2.on()
+led3.on()
+led4.on()
 
 #h = [1,3,4,1,1]
 #ht = [120,120,780,1780,2780]
