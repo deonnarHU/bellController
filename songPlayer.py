@@ -52,8 +52,9 @@ def playSong(songTitle):
     for x in h:
         timerOnName = "t" + str(i) + "On"
         timerOffName = "t" + str(i) + "Off"
-        noteStarters[timerOnName] = Timer(ht(i)/1000, startNote, [x])
-        noteStoppers[timerOffName] = Timer(ht(i)/1000 + 0.1, stopNote, [x])
+        hangTime = ht(i)
+        noteStarters[timerOnName] = Timer(hangTime/1000, startNote, [x])
+        noteStoppers[timerOffName] = Timer(hangTime/1000 + 0.1, stopNote, [x])
         noteStarters[timerOnName].start()
         noteStoppers[timerOffName].start()
         i = i + 1
