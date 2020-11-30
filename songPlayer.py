@@ -39,8 +39,24 @@ def noteSelector(x):
     return switcher.get(x,"Note exist NO")
 
 
+def playSong(songTitle):
+    song = readSong(songTitle)
+    #song = readSong("song0001.json")
+    h = song.noteList
+    ht = song.noteTime
+    i = 0
+    for x in h:
+        timerOnName = "t" + str(i) + "On"
+        timerOffName = "t" + str(i) + "Off"
+        noteStarters[timerOnName] = Timer(ht[i]/1000, startNote, [x])
+        noteStoppers[timerOffName] = Timer(ht[i]/1000 + 0.1, stopNote, [x])
+        noteStarters[timerOnName].start()
+        noteStoppers[timerOffName].start()
+        i = i + 1
+
+
 #Load Singysong
-song = readSong("song0001.json")
+""" song = readSong("song0001.json")
 h = song.noteList
 ht = song.noteTime
 i = 0
@@ -51,5 +67,5 @@ for x in h:
     noteStoppers[timerOffName] = Timer(ht[i]/1000 + 0.1, stopNote, [x])
     noteStarters[timerOnName].start()
     noteStoppers[timerOffName].start()
-    i = i + 1
+    i = i + 1 """
     
