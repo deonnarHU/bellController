@@ -43,7 +43,7 @@ def noteSelector(x):
     return switcher.get(x,"Note exist NO")
 
 
-def playSong(songTitle):
+def playSong(songTitle, offset, sumPreviousSongLength):
     song = readSong(songTitle)
     #song = readSong("song0001.json")
     h = song["noteList"]
@@ -53,8 +53,8 @@ def playSong(songTitle):
         timerOnName = "t" + str(i) + "On"
         timerOffName = "t" + str(i) + "Off"
         hangTime = ht[i]
-        noteStarters[timerOnName] = Timer(ht[i]/1000, startNote, [x])
-        noteStoppers[timerOffName] = Timer(ht[i]/1000 + 0.1, stopNote, [x])
+        noteStarters[timerOnName] = Timer(offset/1000 + sumPreviousSongLength/1000 + ht[i]/1000, startNote, [x])
+        noteStoppers[timerOffName] = Timer(offset/1000 + sumPreviousSongLength/1000 + ht[i]/1000 + 0.1, stopNote, [x])
         noteStarters[timerOnName].start()
         noteStoppers[timerOffName].start()
         i = i + 1
