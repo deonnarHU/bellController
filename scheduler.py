@@ -69,7 +69,7 @@ def startScheduler():
 
 def job(playlistName):
     print("I'm working...")
-    playListPlayer.playPlaylist()
+    playListPlayer.playPlaylist(playlistName)
 
 #schedule.every().minutes.do(job)
 #schedule.every(10).seconds.do(job)
