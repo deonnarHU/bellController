@@ -28,7 +28,7 @@ def schedulePlaylistOnce(playlistName):
     return  schedule.CancelJob
 
 def loadScheduleTable():
-    with open(schedule.json) as f:
+    with open("scheduleTable.json") as f:
         data = json.load(f)
     return data
 
