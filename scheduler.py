@@ -57,7 +57,7 @@ def startScheduler():
             print(x["playListName"])
             seconds = ":" + str(x["Second"])
             print(seconds)
-            schedule.every().minute.at(":" + str(x["Second"])).do(playListPlayer.playPlaylist(x["playListName"]))
+            schedule.every().minute.at(":" + str(x["Second"])).do(job(x["playListName"]))
         else:
             print("shit happened bruh")
 
@@ -67,8 +67,9 @@ def startScheduler():
 
 
 
-def job():
+def job(playlistName):
     print("I'm working...")
+    playListPlayer.playPlaylist()
 
 #schedule.every().minutes.do(job)
 #schedule.every(10).seconds.do(job)
