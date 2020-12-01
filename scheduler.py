@@ -52,6 +52,9 @@ def startScheduler():
             #DEV OPTION - need to remove
             #Play at every minute at specific second
             print("kacsa4")
+            print(x)
+            print(x["Second"])
+            print(x["playListName"])
             schedule.every().minute.at(":" + str(x["Second"])).do(playListPlayer.playPlaylist(x["playListName"]))
         else:
             print("shit happened bruh")
