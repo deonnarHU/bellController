@@ -2,7 +2,7 @@
     "schedules": [
         {
             "playListName": "playlist0001.json",
-            "Type": 1,
+            "Type": 4,
             "Day": "monday",
             "Hour": "22",
             "Minute": "22",
