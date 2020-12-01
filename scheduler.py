@@ -40,7 +40,7 @@ def startScheduler():
             #Play it once at specific date and time
             #Need a specific function, which calls a schedule cancel after the run
             print("kacsa")
-            schedule.
+            #schedule.
         elif x["Type"] == 2:
             #Play it every day at specific time
             print("kacsa")
