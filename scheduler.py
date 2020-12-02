@@ -28,7 +28,7 @@ def startScheduler():
             schedule.every().day.at("10:30").do(schedulePlaylistOnce, playlistName = x["playListName"])
         elif x["Type"] == 2:
             #Play it every day at specific time
-            schedule.every().day.at("20:38:22").do(schedulePlaylist, playlistName = x["playListName"])
+            schedule.every().day.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
         elif x["Type"] == 3:
             #Play at specific day and time
             schedule.every().day.at("10:30").do(schedulePlaylist, playlistName = x["playListName"])
