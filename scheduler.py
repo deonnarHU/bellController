@@ -3,35 +3,14 @@ import schedule
 import time
 import json
 
-print("suttyóság")
-#scheduleTable
-
-#Play it once at specific date and time
-def getScheduleType1():
-    return 0
-
-#Play it every day at specific time
-def getScheduleType2():
-    return 0
-
-#Play at specific day and time
-def getScheduleType3():
-    return 0
-
-#DEV OPTION - need to remove
-#Play at every minute at specific second
-def getScheduleType4():
-    return 0
-
 def schedulePlaylistOnce(playlistName):
     #play playlist
     playListPlayer.playPlaylist(playlistName)
     return  schedule.CancelJob
 
-def schedulePlaylistOnceMinutes(playlistName):
+def schedulePlaylist(playlistName):
     #play playlist
     playListPlayer.playPlaylist(playlistName)
-    return  schedule.CancelJob
 
 def loadScheduleTable():
     with open("scheduleTable.json") as f:
@@ -45,37 +24,23 @@ def startScheduler():
         if x["Type"] == 1:
             #Play it once at specific date and time
             #Need a specific function, which calls a schedule cancel after the run
-            print("kacsa")
             #schedule.
+            schedule.every().day.at("10:30").do(schedulePlaylistOnce, playlistName = x["playListName"])
         elif x["Type"] == 2:
             #Play it every day at specific time
-            print("kacsa")
+            schedule.every().day.at("20:38:22").do(schedulePlaylist, playlistName = x["playListName"])
         elif x["Type"] == 3:
             #Play at specific day and time
-            print("kacsa")
+            schedule.every().day.at("10:30").do(schedulePlaylist, playlistName = x["playListName"])
         elif x["Type"] == 4:
             #DEV OPTION - need to remove
             #Play at every minute at specific second
-            print("kacsa4")
-            print(x)
-            print(x["Second"])
-            print(x["playListName"])
-            seconds = ":" + str(x["Second"])
-            print(seconds)
-            #schedule.every().minute.at(":" + str(x["Second"])).do(job, playlistName = x["playListName"])
-            schedule.every().minute.at(":" + str(x["Second"])).do(schedulePlaylistOnceMinutes, playlistName = x["playListName"])
+            schedule.every().minute.at(":" + str(x["Second"])).do(schedulePlaylist, playlistName = x["playListName"])
         else:
             print("shit happened bruh")
 
 #type1
 #schedule.
-
-
-
-
-def job(playlistName):
-    print("I'm working...")
-    playListPlayer.playPlaylist(playlistName)
 
 #schedule.every().minutes.do(job)
 #schedule.every(10).seconds.do(job)
