@@ -25,12 +25,12 @@ def getScheduleType4():
 
 def schedulePlaylistOnce(playlistName):
     #play playlist
-    playlistName.playPlaylist(playlistName)
+    playListPlayer.playPlaylist(playlistName)
     return  schedule.CancelJob
 
 def schedulePlaylistOnceMinutes(playlistName):
     #play playlist
-    playlistName.playPlaylist(playlistName)
+    playListPlayer.playPlaylist(playlistName)
     return  schedule.CancelJob
 
 def loadScheduleTable():
