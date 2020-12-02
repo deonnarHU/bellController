@@ -28,6 +28,11 @@ def schedulePlaylistOnce(playlistName):
     playlistName.playPlaylist(playlistName)
     return  schedule.CancelJob
 
+def schedulePlaylistOnceMinutes(playlistName):
+    #play playlist
+    playlistName.playPlaylist(playlistName)
+    return  schedule.CancelJob
+
 def loadScheduleTable():
     with open("scheduleTable.json") as f:
         data = json.load(f)
@@ -57,7 +62,8 @@ def startScheduler():
             print(x["playListName"])
             seconds = ":" + str(x["Second"])
             print(seconds)
-            schedule.every().minute.at(":" + str(x["Second"])).do(job, playlistName = x["playListName"])
+            #schedule.every().minute.at(":" + str(x["Second"])).do(job, playlistName = x["playListName"])
+            schedule.every().minute.at(":" + str(x["Second"])).do(schedulePlaylistOnceMinutes, playlistName = x["playListName"])
         else:
             print("shit happened bruh")
 
