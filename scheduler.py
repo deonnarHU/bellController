@@ -31,7 +31,10 @@ def startScheduler():
             schedule.every().day.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
         elif x["Type"] == 3:
             #Play at specific day and time
-            schedule.every().x["Day"].at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
+            if x["Day"] == "monday":
+                schedule.every().wednesday.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
+                #schedule.peepee
+           #schedule.every()..at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
         elif x["Type"] == 4:
             #DEV OPTION - need to remove
             #Play at every minute at specific second
