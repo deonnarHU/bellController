@@ -2,10 +2,10 @@
     "schedules": [
         {
             "playListName": "playlist0001.json",
-            "Type": 3,
+            "Type": 4,
             "Day": "monday",
-            "Hour": "20",
-            "Minute": "54",
+            "Hour": "21",
+            "Minute": "12",
             "Second": "22"
         }
     ]
