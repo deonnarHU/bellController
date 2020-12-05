@@ -177,7 +177,7 @@ function playKeyboard() {
 
     keysPressed.push(e.keyCode);
 
-   /* if (keyboard[e.keyCode]) {
+    if (keyboard[e.keyCode]) {
       if (visualKeyboard[keyboard[e.keyCode]]) {
         visualKeyboard[keyboard[e.keyCode]].classList.add("is-playing");
       }
@@ -186,10 +186,10 @@ function playKeyboard() {
       let note = arrPlayNote[0];
       let octaveModifier = arrPlayNote[1] | 0;
 
-      fnPlayNote(note, octave + octaveModifier);
+      //fnPlayNote(note, octave + octaveModifier);
     } else {
       return false;
-    }*/
+    }
   }
 
   function fnRemoveKeyBinding(e) {
