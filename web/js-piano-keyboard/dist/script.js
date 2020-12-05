@@ -168,7 +168,7 @@ function playKeyboard() {
 
   function fnPlayKeyboard(e) {
     let i = keysPressed.length;
-    
+
     while (i--) {
       if (keysPressed[i] == e.keyCode) {
         return false;
