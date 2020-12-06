@@ -26,6 +26,13 @@ function init() {
 
 }
 
+function setBellOne(){
+  var input = document.getElementById("input");
+  // You can send message to the Web Socket using ws.send.
+  ws.send(input.value);
+  input.value = "";
+}
+
 function playKeyboard() {
   let isMobile = !!navigator.userAgent.match(
   /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
@@ -35,13 +42,7 @@ function playKeyboard() {
 
 
   function useBell(playedNote) {
-    //var input = document.getElementById("input");
-    // You can send message to the Web Socket using ws.send.
-    //ws.send(playedNote);
     ws.send(playedNote);
-    //output("send: " + input.value);
-    //input.value = "";
-    //input.focus();
   }
 
   isMobile ?
@@ -225,7 +226,7 @@ function playKeyboard() {
       let arrPlayNote = keyboard[e.keyCode].split(",");
       let note = arrPlayNote[0];
       let octaveModifier = arrPlayNote[1] | 0;
-      useBell(e.keyCode);
+      useBell(keyboard[e.keyCode]);
       //fnPlayNote(note, octave + octaveModifier);
     } else {
       return false;
