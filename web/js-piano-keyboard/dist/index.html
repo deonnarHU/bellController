@@ -15,10 +15,8 @@
 <body onload="init();">
 <!-- partial:index.partial.html -->
 <main class="has-dflex-center">
-  <form onsubmit="setBellOne(); return false;">
-    <input type="text" id="input">
-    <input type="submit" value="Send">
-  </form>
+  <button onclick="setBellOne(); return false">Kezdőharang Megadás</button>
+  <div id="bellOneCode">Nincs megadva kezdőharang</div>
   <section>
     <div class="lx-container-80">
       <div class="lx-card">
