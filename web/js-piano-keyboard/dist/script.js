@@ -226,18 +226,20 @@ function playKeyboard() {
       let arrPlayNote = keyboard[e.keyCode].split(",");
       let note = arrPlayNote[0];
       let octaveModifier = arrPlayNote[1] | 0;
+      var correctOctave = parseInt(arrPlayNote[1]) + 4;
+      let finalNote = note.concat(correctOctave)
 
       if(isSetup){
         var setupString = "Setup,"
-      useBell(setupString.concat(keyboard[e.keyCode]));
+      useBell(setupString.concat(finalNote));
       isSetup = false;
       var templateText = "Az 1-es harang hangja: "
-      var baseBellOctave = parseInt(arrPlayNote[1]) + 4;
-      document.getElementById("bellOneCode").innerHTML = templateText.concat(arrPlayNote[0],baseBellOctave);
+      var correctOctave = parseInt(arrPlayNote[1]) + 4;
+      document.getElementById("bellOneCode").innerHTML = templateText.concat(finalNote);
     }
     else{
       var playString = "Play,"
-      useBell(playString.concat(keyboard[e.keyCode]));
+      useBell(playString.concat(finalNote));
     }
       //fnPlayNote(note, octave + octaveModifier);
     } else {
