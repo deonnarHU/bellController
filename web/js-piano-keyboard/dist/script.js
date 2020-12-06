@@ -1,36 +1,38 @@
+var ws;
+         
+function init() {
+
+  // Connect to Web Socket
+  ws = new WebSocket("ws://192.168.91.127:9001/");
+
+  // Set event handlers.
+  ws.onopen = function() {
+    output("onopen");
+  };
+  
+  ws.onmessage = function(e) {
+    // e.data contains received string.
+    output("onmessage: " + e.data);
+  };
+  
+  ws.onclose = function() {
+    output("onclose");
+  };
+
+  ws.onerror = function(e) {
+    output("onerror");
+    console.log(e)
+  };
+
+}
+
 function playKeyboard() {
   let isMobile = !!navigator.userAgent.match(
   /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
 
   let events;
 
-  var ws;
-         
-  function init() {
 
-    // Connect to Web Socket
-    ws = new WebSocket("ws://192.168.91.127:9001/");
-
-    // Set event handlers.
-    ws.onopen = function() {
-      output("onopen");
-    };
-    
-    ws.onmessage = function(e) {
-      // e.data contains received string.
-      output("onmessage: " + e.data);
-    };
-    
-    ws.onclose = function() {
-      output("onclose");
-    };
-
-    ws.onerror = function(e) {
-      output("onerror");
-      console.log(e)
-    };
-
-  }
 
   function useBell(playedNote) {
     //var input = document.getElementById("input");
