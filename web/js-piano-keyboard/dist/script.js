@@ -225,7 +225,7 @@ function playKeyboard() {
       let arrPlayNote = keyboard[e.keyCode].split(",");
       let note = arrPlayNote[0];
       let octaveModifier = arrPlayNote[1] | 0;
-      useBell(note);
+      useBell(e.keyCode);
       //fnPlayNote(note, octave + octaveModifier);
     } else {
       return false;
