@@ -29,9 +29,8 @@ function init() {
 
 function setBellOne(){
   isSetup = true;
-  var bellOneCode = document.getElementById("bellOneCode");
+  document.getElementById("bellOneCode").innerHTML = "Hangra vár";
   // You can send message to the Web Socket using ws.send.
-  bellOneCode.value = "Hangra vár";
 }
 
 function playKeyboard() {
@@ -229,15 +228,14 @@ function playKeyboard() {
       let octaveModifier = arrPlayNote[1] | 0;
 
       if(isSetup){
-        var setupString = "Setup"
+        var setupString = "Setup,"
       useBell(setupString.concat(keyboard[e.keyCode]));
       isSetup = false;
-      var bellOneCode = document.getElementById("bellOneCode");
       var templateText = "Az 1-es harang hangja: "
-      bellOneCode.value = templateText.concat();
+      document.getElementById("bellOneCode").innerHTML = templateText.concat(keyboard[e.keyCode]);
     }
     else{
-      var playString = "Play"
+      var playString = "Play,"
       useBell(playString.concat(keyboard[e.keyCode]));
     }
       //fnPlayNote(note, octave + octaveModifier);
