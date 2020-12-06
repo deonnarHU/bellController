@@ -232,7 +232,8 @@ function playKeyboard() {
       useBell(setupString.concat(keyboard[e.keyCode]));
       isSetup = false;
       var templateText = "Az 1-es harang hangja: "
-      document.getElementById("bellOneCode").innerHTML = templateText.concat(keyboard[e.keyCode]);
+      var baseBellOctave = arrPlayNote[1] + 4;
+      document.getElementById("bellOneCode").innerHTML = templateText.concat(arrPlayNote[0],baseBellOctave);
     }
     else{
       var playString = "Play,"
