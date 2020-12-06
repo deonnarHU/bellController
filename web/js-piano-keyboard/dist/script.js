@@ -38,7 +38,7 @@ function playKeyboard() {
     //var input = document.getElementById("input");
     // You can send message to the Web Socket using ws.send.
     //ws.send(playedNote);
-    ws.send("1");
+    ws.send(playedNote);
     //output("send: " + input.value);
     //input.value = "";
     //input.focus();
