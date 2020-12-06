@@ -4,6 +4,44 @@ function playKeyboard() {
 
   let events;
 
+  var ws;
+         
+  function init() {
+
+    // Connect to Web Socket
+    ws = new WebSocket("ws://192.168.91.127:9001/");
+
+    // Set event handlers.
+    ws.onopen = function() {
+      output("onopen");
+    };
+    
+    ws.onmessage = function(e) {
+      // e.data contains received string.
+      output("onmessage: " + e.data);
+    };
+    
+    ws.onclose = function() {
+      output("onclose");
+    };
+
+    ws.onerror = function(e) {
+      output("onerror");
+      console.log(e)
+    };
+
+  }
+
+  function useBell(playedNote) {
+    //var input = document.getElementById("input");
+    // You can send message to the Web Socket using ws.send.
+    //ws.send(playedNote);
+    ws.send("1");
+    //output("send: " + input.value);
+    //input.value = "";
+    //input.focus();
+  }
+
   isMobile ?
   events = ["touchstart", "touchend"] :
   events = ["mousedown", "mouseup"];
@@ -185,7 +223,7 @@ function playKeyboard() {
       let arrPlayNote = keyboard[e.keyCode].split(",");
       let note = arrPlayNote[0];
       let octaveModifier = arrPlayNote[1] | 0;
-
+      useBell(note);
       //fnPlayNote(note, octave + octaveModifier);
     } else {
       return false;
