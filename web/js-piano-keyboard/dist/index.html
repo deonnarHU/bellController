@@ -9,11 +9,25 @@
   function onGoBackToMain() {
     location.replace("http://192.168.91.127/index.html")
   }
+
+  function onSubmit() {
+           var input = document.getElementById("input");
+           // You can send message to the Web Socket using ws.send.
+           input.value = "";
+           input.focus();
+           document.getElementById("songTitle").innerHTML = input;
+         }
+
 </script>
 <script  src="./script.js"></script>
 </head>
 <body onload="init();">
 <!-- partial:index.partial.html -->
+<form onsubmit="onSubmit(); return false;">
+  <input type="text" id="input">
+  <input type="submit" value="Cím mentése">
+</form>
+<div id="songTitle"></div>
 <main class="has-dflex-center">
   <button onclick="startRecording(); return false">Felvétel Indítása</button>
   <button onclick="stopRecording(); return false">Felvétel Leállítása</button>
