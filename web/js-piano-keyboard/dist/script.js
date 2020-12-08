@@ -229,18 +229,19 @@ function playKeyboard() {
       var correctOctave = parseInt(arrPlayNote[1]) + 4;
       let finalNote = note.concat(correctOctave)
 
-      if(isSetup){
+     /* if(isSetup){
         var setupString = "Setup,"
       useBell(setupString.concat(finalNote));
       isSetup = false;
       var templateText = "Az 1-es harang hangja: "
       var correctOctave = parseInt(arrPlayNote[1]) + 4;
       document.getElementById("bellOneCode").innerHTML = templateText.concat(finalNote);
-    }
-    else{
-      var playString = "Play,"
-      useBell(playString.concat(finalNote));
-    }
+    }*/
+    //else{
+      //var playString = "Play,"
+      //useBell(playString.concat(finalNote));
+      useBell(finalNote);
+   // }
       //fnPlayNote(note, octave + octaveModifier);
     } else {
       return false;
