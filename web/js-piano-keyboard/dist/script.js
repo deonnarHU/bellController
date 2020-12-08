@@ -33,6 +33,22 @@ function setBellOne(){
   // You can send message to the Web Socket using ws.send.
 }
 
+let noteList = []
+let noteTimeList = []
+let isRecording = false;
+
+function startRecording(){
+  isRecording = true;
+  document.getElementById("recoringInProgress").innerHTML = "Felvétel Folyamatban"
+}
+
+function stopRecording(){
+  isRecording = false;
+  let recording = "Recording";
+  let recordedSong = recording.concat(noteList,noteTimeList);
+  document.getElementById("recoringInProgress").innerHTML = "Nincs Felvétel"
+}
+
 function playKeyboard() {
   let isMobile = !!navigator.userAgent.match(
   /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
@@ -238,9 +254,13 @@ function playKeyboard() {
       document.getElementById("bellOneCode").innerHTML = templateText.concat(finalNote);
     }*/
     //else{
-      //var playString = "Play,"
-      //useBell(playString.concat(finalNote));
-      useBell(finalNote);
+      var playString = "Play,"
+      useBell(playString.concat(finalNote));
+      if(isRecording){
+        noteList.add(finalNote);
+        noteTimeList.add(Date.now())
+      }
+      //useBell(finalNote);
    // }
       //fnPlayNote(note, octave + octaveModifier);
     } else {

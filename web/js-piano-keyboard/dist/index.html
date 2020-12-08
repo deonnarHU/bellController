@@ -15,8 +15,9 @@
 <body onload="init();">
 <!-- partial:index.partial.html -->
 <main class="has-dflex-center">
-  <button onclick="setBellOne(); return false">Kezdőharang Megadás</button>
-  <div id="bellOneCode">Nincs megadva kezdőharang</div>
+  <button onclick="startRecording(); return false">Felvétel Indítása</button>
+  <button onclick="stopRecording(); return false">Felvétel Leállítása</button>
+  <div id="recoringInProgress">Nincs felvétel</div>
   <section>
     <div class="lx-container-80">
       <div class="lx-card">
