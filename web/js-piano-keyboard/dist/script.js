@@ -256,7 +256,7 @@ function playKeyboard() {
       document.getElementById("bellOneCode").innerHTML = templateText.concat(finalNote);
     }*/
     //else{
-      var playString = "Play,"
+      var playString = "PlaySEPARATOR"
       useBell(playString.concat(finalNote));
       if(isRecording){
         noteList.push(finalNote);
