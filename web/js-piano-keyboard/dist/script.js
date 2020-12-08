@@ -258,8 +258,8 @@ function playKeyboard() {
       var playString = "Play,"
       useBell(playString.concat(finalNote));
       if(isRecording){
-        noteList.add(finalNote);
-        noteTimeList.add(Date.now())
+        noteList.push(finalNote);
+        noteTimeList.push(Date.now())
       }
       //useBell(finalNote);
    // }
