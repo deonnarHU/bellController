@@ -13,9 +13,9 @@
   function onSubmit() {
            var input = document.getElementById("input");
            // You can send message to the Web Socket using ws.send.
+           document.getElementById("songTitle").innerHTML = input.value;
            input.value = "";
            input.focus();
-           document.getElementById("songTitle").innerHTML = input.value;
          }
 
 </script>
