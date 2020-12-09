@@ -3,41 +3,35 @@
    <head>
     <meta charset="utf-8">
       <title>Harangjáték vezérlő Főmenü</title>
+      <style>
+        th, td, p, input {
+            font:14px Verdana;
+        }
+        table, th, td 
+        {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
       <script type="text/javascript">
 
-         var ws;
+      function onGoBackToMain() {
+        location.replace("http://192.168.91.127/index.html")
+      }
          
-         function init() {
-         }
-         
-         function onSubmit() {
-           var input = document.getElementById("input");
-           // You can send message to the Web Socket using ws.send.
-           ws.send(input.value);
-           output("send: " + input.value);
-           input.value = "";
-           input.focus();
-         }
-         
-         function onCloseClick() {
-         }
-
-         function onGoToPiano() {
-          location.replace("http://192.168.91.127/js-piano-keyboard/dist/index.html")
-         }
-
-         function onGoBackToMain() {
-         location.replace("http://192.168.91.127/index.html")
-         }
-         
-     
-       </script>
+      </script>
 
 
    </head>	   
-   <body onload="init();">
+   <body>
     <div id="title">Ütemezések</div>
-    <button onclick="onGoBackToMain(); return false;">Vissza a Főmenübe</button>
-  <div id="log"></div>
+    <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
+    <input type="button" onclick="CreateTableFromJSON()" value="Create Table From JSON" />
+    <p id="showData"></p>
 </body>
 </html>
