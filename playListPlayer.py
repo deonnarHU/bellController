@@ -17,7 +17,7 @@ def playPlaylist(playlistName):
     sumPreviousSongLength = 0
     for x in playlist["songs"]:
         #with open(playlist["songs"][i]) as g:
-        with open(x) as g:
+        with open("/songs/" + x) as g:
             currentSong = json.load(g)
         #songPlayer.playSong(playlist["songs"][i], i*offset, sumPreviousSongLength)
         songPlayer.playSong(x, i*offset, sumPreviousSongLength)
