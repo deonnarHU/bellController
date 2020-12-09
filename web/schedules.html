@@ -47,17 +47,17 @@
             }
         ]*/
 
-
+        var myBooks;
         var hr = new XMLHttpRequest();
         hr.open("GET", "scheduleTable.json", true);
         hr.setRequestHeader("Content-type", "application/json", true);
         hr.onreadystatechange = function() {
           if (hr.readyState == 4 && hr.status == 200) {
-            var myBooks = JSON.parse(hr.responseText);
+            myBooks = JSON.parse(hr.responseText);
        // formatToTable(data);
           }
         }
-       // var myBooks =
+        
 
         // EXTRACT VALUE FOR HTML HEADER. 
         // ('Book ID', 'Book Name', 'Category' and 'Price')
