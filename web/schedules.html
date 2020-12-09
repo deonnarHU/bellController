@@ -53,7 +53,7 @@
         hr.setRequestHeader("Content-type", "application/json", true);
         hr.onreadystatechange = function() {
           if (hr.readyState == 4 && hr.status == 200) {
-            print(hr.responseText);
+            console.log(hr.responseText);
             myBooks = JSON.parse(hr.responseText["schedules"]);
        // formatToTable(data);
           }
