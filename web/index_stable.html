@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>This is document title</title>
+      <script type="text/javascript">
+
+         var ws;
+         
+         function init() {
+         }
+         
+         function onSubmit() {
+           var input = document.getElementById("input");
+           // You can send message to the Web Socket using ws.send.
+           ws.send(input.value);
+           output("send: " + input.value);
+           input.value = "";
+           input.focus();
+         }
+         
+         function onCloseClick() {
+         }
+
+         function onGoToPiano() {
+          location.replace("http://192.168.91.127/js-piano-keyboard/dist/index.html")
+         }
+         
+     
+       </script>
+
+
+   </head>	   
+   <body onload="init();">
+    <button onclick="onGoToPiano(); return false;">Szám feljátszása</button>
+    <button onclick="onGoToPlaylists(); return false;">Lejátszási listák</button>
+  <div id="log"></div>
+</body>
+</html>
