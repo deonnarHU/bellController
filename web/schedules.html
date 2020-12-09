@@ -26,12 +26,8 @@
           location.replace("http://192.168.91.127/js-piano-keyboard/dist/index.html")
          }
 
-         function onGoToPlaylists() {
-          location.replace("http://192.168.91.127/playlists.html")
-         }
-
-         function onGoToSchedules() {
-          location.replace("http://192.168.91.127/schedules.html")
+         function onGoBackToMain() {
+         location.replace("http://192.168.91.127/index.html")
          }
          
      
@@ -40,11 +36,7 @@
 
    </head>	   
    <body onload="init();">
-    <div>
-    <button onclick="onGoToPiano(); return false;">Szám feljátszása</button>
-    <button onclick="onGoToPlaylists(); return false;">Lejátszási listák</button>
-    <button onclick="onGoToSchedules(); return false;">Ütemezések</button>
-  </div>
+    <button onclick="onGoBackToMain(); return false;">Szám feljátszása</button>
   <div id="log"></div>
 </body>
 </html>
