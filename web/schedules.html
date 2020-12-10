@@ -42,7 +42,8 @@
           //output("onmessage: " + e.data);
           console.log(e.data);
           console.log(typeof(e.data));
-          var scheduleJSON = JSON.parse(JSON.stringify(e.data.replace(/^\s+|\s+$/g, "")));
+         // var scheduleJSON = JSON.parse(e.data.replace(/^\s+|\s+$/g, ""));
+         var scheduleJSON = JSON.parse(e.data);
           myBooks = scheduleJSON.schedules; 
         };
         
