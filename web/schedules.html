@@ -43,7 +43,7 @@
           console.log(e.data);
           console.log(typeof(e.data));
          // var scheduleJSON = JSON.parse(e.data.replace(/^\s+|\s+$/g, ""));
-         var replacement = e.data.replace(/'/g, "''");
+         var replacement = e.data.replace(/'/g, '"');
          console.log(replacement);
          var scheduleJSON = JSON.parse(replacement);
           myBooks = scheduleJSON.schedules; 
