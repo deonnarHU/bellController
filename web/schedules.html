@@ -41,7 +41,8 @@
           // e.data contains received string.
           //output("onmessage: " + e.data);
           console.log(e.data); 
-          myBooks = e.data["schedules"]; 
+
+          myBooks = JSON.parse(e.data["schedules"]); 
         };
         
         ws.onclose = function() {
