@@ -41,7 +41,7 @@
           // e.data contains received string.
           //output("onmessage: " + e.data);
           console.log(e.data); 
-
+          scheduleJSON = JSON.parse(e.data);
           myBooks = JSON.parse(e.data["schedules"]); 
         };
         
