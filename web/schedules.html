@@ -42,7 +42,7 @@
           //output("onmessage: " + e.data);
           console.log(e.data); 
           var scheduleJSON = JSON.parse(JSON.stringify(e.data));
-          myBooks = scheduleJSON; 
+          myBooks = scheduleJSON.schedules; 
         };
         
         ws.onclose = function() {
