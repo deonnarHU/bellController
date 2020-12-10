@@ -20,27 +20,42 @@
     </style>
       <script type="text/javascript">
 
+      var ws;
+
       function onGoBackToMain() {
         location.replace("http://192.168.91.127/index.html")
       }
+         
+      function init() {
 
+        // Connect to Web Socket
+        ws = new WebSocket("ws://192.168.91.127:9001/");
 
+        // Set event handlers.
+        ws.onopen = function() {
+          output("onopen");
+        };
+        
+        ws.onmessage = function(e) {
+          // e.data contains received string.
+          output("onmessage: " + e.data);
+        };
+        
+        ws.onclose = function() {
+          output("onclose");
+        };
 
-      function loadJSON(){
-        var hr = new XMLHttpRequest();
-        hr.open("GET", "scheduleTable.json", true);
-        hr.setRequestHeader("Content-type", "application/json", true);
-        hr.onreadystatechange = function() {
-          if (hr.readyState == 4 && hr.status == 200) {
-            console.log(hr.responseText);
-          //  myBooks = JSON.parse(hr.responseText["schedules"]);
-       // formatToTable(data);
-          }
-        }
-        return JSON.parse(hr.responseText["schedules"]);
+        ws.onerror = function(e) {
+          output("onerror");
+          console.log(e)
+        };
+
       }
+
+
+      
       function CreateTableFromJSON() {
-       /* var myBooks = [
+        var myBooks = [
             {
                 "Book ID": "1",
                 "Book Name": "Computer Architecture",
@@ -59,9 +74,10 @@
                 "Category": "Science",
                 "Price": "210.40"
             }
-        ]*/
+        ]
 
-        var myBooks = loadJSON();
+        ws.send("RequestSchedule");
+        //var myBooks = loadJSON();
         
 
         // EXTRACT VALUE FOR HTML HEADER. 
@@ -109,7 +125,7 @@
 
 
    </head>	   
-   <body>
+   <body onload="init();">
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
     <input type="button" onclick="CreateTableFromJSON();" value="Create Table From JSON" />
