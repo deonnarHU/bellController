@@ -38,7 +38,8 @@
         
         ws.onmessage = function(e) {
           // e.data contains received string.
-          output("onmessage: " + e.data);
+          //output("onmessage: " + e.data);
+          console.log(e.data);
         };
         
         ws.onclose = function() {
