@@ -47,6 +47,7 @@
          console.log(replacement);
          var scheduleJSON = JSON.parse(replacement);
           myBooks = scheduleJSON.schedules; 
+          CreateTableFromJSON();
         };
         
         ws.onclose = function() {
@@ -61,33 +62,14 @@
       }
 
 
-        const loadScheduleTable= async () =>{
+      //  const loadScheduleTable= async () =>{
+        function loadScheduleTable() {
         ws.send("RequestSchedule");
-        const result = await ws.onmessage
       }
       function CreateTableFromJSON() {
-        /*var myBooks = [
-            {
-                "Book ID": "1",
-                "Book Name": "Computer Architecture",
-                "Category": "Computers",
-                "Price": "125.60"
-            },
-            {
-                "Book ID": "2",
-                "Book Name": "Asp.Net 4 Blue Book",
-                "Category": "Programming",
-                "Price": "56.00"
-            },
-            {
-                "Book ID": "3",
-                "Book Name": "Popular Science",
-                "Category": "Science",
-                "Price": "210.40"
-            }
-        ]*/
 
-        loadScheduleTable()
+
+       // loadScheduleTable()
         //var myBooks = loadJSON();
         
 
@@ -139,7 +121,7 @@
    <body onload="init();">
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
-    <input type="button" onclick="CreateTableFromJSON();" value="Create Table From JSON" />
+    <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" />
     <p id="showData"></p>
 </body>
 </html>
