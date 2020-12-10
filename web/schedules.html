@@ -117,11 +117,27 @@
       </script>
 
 
-   </head>	   
-   <body onload="init();">
+  </head>	   
+  <body onload="init();">
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
     <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" />
     <p id="showData"></p>
-</body>
+
+    <FORM>
+      <TABLE BORDER="1">
+        <TR>
+          <TD>Your name</TD>
+          <TD>
+            <INPUT TYPE="TEXT" NAME="name" SIZE="20">
+          </TD>
+        </TR>
+        <TR>
+          <TD>Your E-mail address</TD>
+          <TD><INPUT TYPE="TEXT" NAME="email" SIZE="25"></TD>
+        </TR>
+      </TABLE>
+      <P><INPUT TYPE="SUBMIT" VALUE="Submit" NAME="B1"></P>
+      </FORM>
+  </body>
 </html>
