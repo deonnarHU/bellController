@@ -50,8 +50,8 @@
          var scheduleJSON = JSON.parse(replacement);
           myBooks = scheduleJSON.schedules;
           CreateTableFromJSON();
-        }
           isLoadingScheduleTable = false;
+        }
         };
         
         ws.onclose = function() {
@@ -162,9 +162,9 @@
           <TD><INPUT TYPE="TEXT" NAME="sec" SIZE="25"></TD>
         </TR>
       </TABLE>
+      </FORM>
       <button>Mentés</button>
       <button>Betöltés</button>
       <button>Törlés</button>
-      </FORM>
   </body>
 </html>
