@@ -40,8 +40,8 @@
         ws.onmessage = function(e) {
           // e.data contains received string.
           //output("onmessage: " + e.data);
-          console.log(e.data); 
-          var scheduleJSON = JSON.parse(JSON.stringify(e.data));
+          console.log(e.data);
+          var scheduleJSON = JSON.parse(JSON.stringify(e.data.replace(/^\s+|\s+$/g, "")));
           myBooks = scheduleJSON.schedules; 
         };
         
