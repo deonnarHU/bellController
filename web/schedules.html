@@ -61,7 +61,10 @@
       }
 
 
-      
+        const loadScheduleTable= async () =>{
+        ws.send("RequestSchedule");
+        const result = await ws.onmessage
+      }
       function CreateTableFromJSON() {
         /*var myBooks = [
             {
@@ -84,7 +87,7 @@
             }
         ]*/
 
-        ws.send("RequestSchedule");
+        loadScheduleTable()
         //var myBooks = loadJSON();
         
 
