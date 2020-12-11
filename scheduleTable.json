@@ -2,7 +2,7 @@
     "schedules": [
         {
             "ID": "1",
-            "playListName": "playlist0001.json",
+            "playListName": "playlist0001",
             "Type": 1,
             "Day": "monday",
             "Hour": "21",
@@ -11,7 +11,7 @@
         },
         {
             "ID": "2",
-            "playListName": "playlist0002.json",
+            "playListName": "playlist0002",
             "Type": 4,
             "Day": "monday",
             "Hour": "21",
