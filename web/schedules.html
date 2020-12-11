@@ -63,6 +63,8 @@
           console.log(e)
         };
 
+        loadScheduleTable();
+
       }
 
 
@@ -137,6 +139,30 @@
           }
         }
       }
+
+      function saveNewSchedule() {
+        var newSchedule = new Map();
+        //Create ID and add tzo newSchedule
+        var newID = myBooks.length + 1;
+        newSchedule["ID"] = newID;
+
+        //read rest of the parameters
+        newSchedule.playListName = document.getElementById("playlistName").value;
+        newSchedule.Type = document.getElementById("type").value;
+        newSchedule.Day = document.getElementById("day").value;
+        newSchedule.Hour = document.getElementById("hour").value;
+        newSchedule.Minute = document.getElementById("min").value;
+        newSchedule.Second = document.getElementById("sec").value;
+
+        //Add it to current scheduleTable
+        var newScheduleTableArray = myBooks.push(newSchedule);
+
+        //Make it to a sandable format, a.k.a. string
+        var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
+        var newScheduleTableSendable = updateScheduleTableTag.concat(newScheduleTableArray.toString());
+        //Send it trough the websocket
+        ws.send(newScheduleTableSendable);
+      }
          
       </script>
 
@@ -182,7 +208,7 @@
         </TR>
       </TABLE>
       </FORM>
-      <button>Mentés</button>
+      <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
       <button>Törlés</button>
   </body>
