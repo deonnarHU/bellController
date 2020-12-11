@@ -158,7 +158,7 @@
 
         //Make it to a sandable format, a.k.a. string
         var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
-        var newScheduleTableSendable = updateScheduleTableTag.concat(JSON.stringify(myBooks));
+        var newScheduleTableSendable = updateScheduleTableTag.concat(myBooks);
         //Send it trough the websocket
         ws.send(newScheduleTableSendable);
       }
