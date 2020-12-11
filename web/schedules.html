@@ -182,6 +182,12 @@
         for (var j = 0; j < myBooks.length; j++){
           myBooks[j]["ID"] = j + 1;
         }
+        var updateScheduleTableTag = "DeleteScheduleEntrySEPARATOR";
+        var finalTable = {}
+        finalTable.schedules = myBooks;
+        var newScheduleTableSendable = updateScheduleTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newScheduleTableSendable);
         CreateTableFromJSON();
       }
          
