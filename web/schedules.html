@@ -35,7 +35,7 @@
 
         // Set event handlers.
         ws.onopen = function() {
-          output("onopen");
+        //  output("onopen");
           loadScheduleTable();
         };
         
@@ -140,7 +140,7 @@
       }
 
       function saveNewSchedule() {
-        var newSchedule;
+        var newSchedule = {};
         //Create ID and add tzo newSchedule
         var newID = myBooks.length + 1;
         newSchedule["ID"] = newID;
