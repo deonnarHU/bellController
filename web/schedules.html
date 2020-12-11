@@ -154,11 +154,11 @@
         newSchedule.Second = document.getElementById("sec").value;
 
         //Add it to current scheduleTable
-        var newScheduleTableArray = myBooks.push(newSchedule);
+        //var newScheduleTableArray = myBooks.push(newSchedule);
 
         //Make it to a sandable format, a.k.a. string
         var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
-        var newScheduleTableSendable = updateScheduleTableTag.concat(newScheduleTableArray.toString());
+        var newScheduleTableSendable = updateScheduleTableTag.concat(myBooks.toString());
         //Send it trough the websocket
         ws.send(newScheduleTableSendable);
       }
