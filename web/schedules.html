@@ -121,19 +121,19 @@
 
 
       function loadScheduleByID() {
-        var currentID = document.getElementByName("id").value;
+        var currentID = document.getElementById("id").value;
         // iterate over each element in the array
         for (var i = 0; i < myBooks.length; i++){
           // look for the entry with a matching `code` value
           if (myBooks[i].id == currentID){
             // we found it
             //Load every param to the corresponding slot in form
-            document.getElementByName("playlistName").value = myBooks[i].playlistName;
-            document.getElementByName("type").value = myBooks[i].Type;
-            document.getElementByName("day").value = myBooks[i].Day;
-            document.getElementByName("hour").value = myBooks[i].Hour;
-            document.getElementByName("min").value = myBooks[i].Minute;
-            document.getElementByName("sec").value = myBooks[i].Second;
+            document.getElementById("playlistName").value = myBooks[i].playlistName;
+            document.getElementById("type").value = myBooks[i].Type;
+            document.getElementById("day").value = myBooks[i].Day;
+            document.getElementById("hour").value = myBooks[i].Hour;
+            document.getElementById("min").value = myBooks[i].Minute;
+            document.getElementById("sec").value = myBooks[i].Second;
           }
         }
       }
@@ -153,32 +153,32 @@
         <TR>
           <TD>ID</TD>
           <TD>
-            <INPUT TYPE="TEXT" NAME="id" SIZE="20">
+            <INPUT TYPE="TEXT" id="id" SIZE="20">
           </TD>
         </TR>
         <TR>
           <TD>Lista Név</TD>
-          <TD><INPUT TYPE="TEXT" NAME="playlistName" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="playlistName" SIZE="25"></TD>
         </TR>
         <TR>
           <TD>Ütemezés Típusa</TD>
-          <TD><INPUT TYPE="TEXT" NAME="type" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="type" SIZE="25"></TD>
         </TR>
         <TR>
           <TD>Nap</TD>
-          <TD><INPUT TYPE="TEXT" NAME="day" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="day" SIZE="25"></TD>
         </TR>
         <TR>
           <TD>Óra</TD>
-          <TD><INPUT TYPE="TEXT" NAME="hour" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="hour" SIZE="25"></TD>
         </TR>
         <TR>
           <TD>Perc</TD>
-          <TD><INPUT TYPE="TEXT" NAME="min" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="min" SIZE="25"></TD>
         </TR>
         <TR>
           <TD>Másodperc</TD>
-          <TD><INPUT TYPE="TEXT" NAME="sec" SIZE="25"></TD>
+          <TD><INPUT TYPE="TEXT" id="sec" SIZE="25"></TD>
         </TR>
       </TABLE>
       </FORM>
