@@ -173,6 +173,7 @@
   </head>	   
   <body onload="init();">
     <div id="title">Ütemezések</div>
+    <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
     <FORM>
       <TABLE BORDER="1">
         <TR>
@@ -209,10 +210,9 @@
       </FORM>
       <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
+      <button>Törlés</button>
 
-    <button>Törlés</button>
-    <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
-    <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" />
+    <!-- <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" /> -->
     <p id="showData"></p>
   </body>
 </html>
