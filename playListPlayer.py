@@ -7,7 +7,7 @@ offset = 2000
 
 def readPlaylist(playlistName):
     #currentPlaylist
-    with open(playlistTable.json) as f:
+    with open("playlistTable.json") as f:
         data = json.load(f)
         #Get object where playListName == needed playlst name
         for j in data:
