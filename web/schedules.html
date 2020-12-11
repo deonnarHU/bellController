@@ -36,6 +36,7 @@
         // Set event handlers.
         ws.onopen = function() {
           output("onopen");
+          loadScheduleTable();
         };
         
         ws.onmessage = function(e) {
@@ -62,8 +63,6 @@
           output("onerror");
           console.log(e)
         };
-
-        loadScheduleTable();
 
       }
 
@@ -141,7 +140,7 @@
       }
 
       function saveNewSchedule() {
-        var newSchedule = new Map();
+        var newSchedule;
         //Create ID and add tzo newSchedule
         var newID = myBooks.length + 1;
         newSchedule["ID"] = newID;
