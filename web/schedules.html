@@ -172,7 +172,7 @@
 
         for (var i = 0; i < myBooks.length; i++){
           // look for the entry with a matching `code` value
-          if (myBooks[j]["ID"] == scheduleToDeleteID){
+          if (myBooks[i]["ID"] == scheduleToDeleteID){
             // we found it
             //Delete object with this ID
             myBooks.splice(i, 1);
@@ -180,7 +180,7 @@
         }
         //Modify IDs after the deleted one
         for (var j = 0; j < myBooks.length; j++){
-          myBooks[i]["ID"] == j + 1;
+          myBooks[j]["ID"] == j + 1;
         }
         CreateTableFromJSON();
       }
