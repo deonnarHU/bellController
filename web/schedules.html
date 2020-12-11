@@ -160,7 +160,7 @@
         var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
         var finalTable = {}
         finalTable.schedules = myBooks;
-        var newScheduleTableSendable = updateScheduleTableTag.concat(finalTable);
+        var newScheduleTableSendable = updateScheduleTableTag.concat(JSON.stringify(finalTable));
         //Send it trough the websocket
         ws.send(newScheduleTableSendable);
       }
