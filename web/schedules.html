@@ -118,6 +118,25 @@
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
       }
+
+
+      function loadScheduleByID() {
+        var currentID = document.getElementsByName("id").innerHTML;
+        // iterate over each element in the array
+        for (var i = 0; i < myBooks.length; i++){
+          // look for the entry with a matching `code` value
+          if (myBooks[i].id == currentID){
+            // we found it
+            //Load every param to the corresponding slot in form
+            document.getElementsByName("playlistName").innerHTML = myBooks[i].playlistName;
+            document.getElementsByName("type").innerHTML = myBooks[i].Type;
+            document.getElementsByName("day").innerHTML = myBooks[i].Day;
+            document.getElementsByName("hour").innerHTML = myBooks[i].Hour;
+            document.getElementsByName("min").innerHTML = myBooks[i].Minute;
+            document.getElementsByName("sec").innerHTML = myBooks[i].Second;
+          }
+        }
+      }
          
       </script>
 
@@ -164,7 +183,7 @@
       </TABLE>
       </FORM>
       <button>Mentés</button>
-      <button>Betöltés</button>
+      <button onclick="loadScheduleByID()">Betöltés</button>
       <button>Törlés</button>
   </body>
 </html>
