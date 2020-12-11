@@ -180,7 +180,7 @@
         }
         //Modify IDs after the deleted one
         for (var j = 0; j < myBooks.length; j++){
-          myBooks[j]["ID"] == j + 1;
+          myBooks[j]["ID"] = j + 1;
         }
         CreateTableFromJSON();
       }
