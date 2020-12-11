@@ -166,6 +166,24 @@
 
         CreateTableFromJSON();
       }
+
+      function deleteScheduleById(){
+        var scheduleToDeleteID = document.getElementById("id").value;
+
+        for (var i = 0; i < myBooks.length; i++){
+          // look for the entry with a matching `code` value
+          if (myBooks[i]["ID"] == scheduleToDeleteID){
+            // we found it
+            //Delete object with this ID
+            myBooks.splice(i, 1);
+          }
+        }
+        //Modify IDs after the deleted one
+        for (var j = 0; j < myBooks.length; j++){
+          myBooks[i]["ID"] == j + 1;
+        }
+        CreateTableFromJSON();
+      }
          
       </script>
 
@@ -210,7 +228,7 @@
       </FORM>
       <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
-      <button>Törlés</button>
+      <button onclick="deleteScheduleById()">Törlés</button>
 
     <!-- <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" /> -->
     <p id="showData"></p>
