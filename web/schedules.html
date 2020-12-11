@@ -125,7 +125,7 @@
         // iterate over each element in the array
         for (var i = 0; i < myBooks.length; i++){
           // look for the entry with a matching `code` value
-          if (myBooks[i].id == currentID){
+          if (myBooks[i]["ID"] == currentID){
             // we found it
             //Load every param to the corresponding slot in form
             document.getElementById("playlistName").value = myBooks[i].playlistName;
