@@ -1,0 +1,12 @@
+{
+   "playlists": [
+      {
+         "ID": "1",
+         "songs": ["áűúőóüöéíyqau úőpőpéá.json", "song0003.json", "song0002.json"] 
+      },
+      {
+         "ID": "2",
+         "songs": ["sajtos.json", "sajtos2.json"] 
+      }
+   ]
+}
