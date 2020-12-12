@@ -49,7 +49,7 @@
          var replacement = e.data.replace(/'/g, '"');
          console.log(replacement);
          var scheduleJSON = JSON.parse(replacement);
-          myBooks = scheduleJSON.schedules;
+          myBooks = scheduleJSON.playlists;
           CreateTableFromJSON();
           isLoadingPlaylistTable = false;
         }
