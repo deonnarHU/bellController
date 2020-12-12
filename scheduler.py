@@ -34,7 +34,7 @@ def startScheduler():
             elif x["Day"] == "tuesday":
                 schedule.every().tuesday.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
             elif x["Day"] == "wednesday":
-               schedule.every().wednesday.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
+                schedule.every().wednesday.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
             elif x["Day"] == "thursday":
                 schedule.every().thursday.at(x["Hour"] + ":" + x["Minute"] + ":" + x["Second"]).do(schedulePlaylist, playlistName = x["playListName"])
             elif x["Day"] == "friday":

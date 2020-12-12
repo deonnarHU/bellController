@@ -10,7 +10,11 @@ def readPlaylist(playlistName):
     with open("playlistTable.json") as f:
         data = json.load(f)
         #Get object where playListName == needed playlst name
-        for j in data:
+        for j in data["playlists"]:
+            print(playlistName)
+            print(j)
+            print(data)
+            print(j["playlistName"])
             if j["playlistName"] == playlistName:
                 currentPlaylist = j
             
@@ -23,7 +27,8 @@ def playPlaylist(playlistName):
     sumPreviousSongLength = 0
     for x in playlist["songs"]:
         #with open(playlist["songs"][i]) as g:
-        with open("/songs/" + x) as g:
+        print(x)
+        with open("./songs/" + x) as g:
             currentSong = json.load(g)
         #songPlayer.playSong(playlist["songs"][i], i*offset, sumPreviousSongLength)
         songPlayer.playSong(x, i*offset, sumPreviousSongLength)

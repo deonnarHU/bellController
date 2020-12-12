@@ -25,7 +25,7 @@ noteStarters = {}
 noteStoppers = {}
 
 def readSong(songName):
-    with open(songName) as f:
+    with open("./songs/" + songName) as f:
         data = json.load(f)
     return data
 
