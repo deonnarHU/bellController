@@ -17,6 +17,15 @@
             "Hour": "21",
             "Minute": "22",
             "Second": "22"
+        },
+        {
+            "ID": "3",
+            "playListName": "playlist0002",
+            "Type": 2,
+            "Day": "monday",
+            "Hour": "21",
+            "Minute": "22",
+            "Second": "22"
         }
     ]
 }
