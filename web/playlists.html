@@ -3,43 +3,240 @@
    <head>
     <meta charset="utf-8">
       <title>Harangjáték vezérlő Főmenü</title>
+      <style>
+        th, td, p, input {
+            font:14px Verdana;
+        }
+        table, th, td 
+        {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
       <script type="text/javascript">
 
-         var ws;
-         
-         function init() {
-         }
-         
-         function onSubmit() {
-           var input = document.getElementById("input");
-           // You can send message to the Web Socket using ws.send.
-           ws.send(input.value);
-           output("send: " + input.value);
-           input.value = "";
-           input.focus();
-         }
-         
-         function onCloseClick() {
-         }
+      var ws;
+      var myBooks;
+      var isLoadingPlaylistTable = false;
 
-         function onGoToPiano() {
-          location.replace("http://192.168.91.127/js-piano-keyboard/dist/index.html")
-         }
-
-         function onGoBackToMain() {
-          location.replace("http://192.168.91.127/index.html")
-         }
+      function onGoBackToMain() {
+        location.replace("http://192.168.91.127/index.html")
+      }
          
-     
-       </script>
+      function init() {
+
+        // Connect to Web Socket
+        ws = new WebSocket("ws://192.168.91.127:9001/");
+
+        // Set event handlers.
+        ws.onopen = function() {
+        //  output("onopen");
+          loadScheduleTable();
+        };
+        
+        ws.onmessage = function(e) {
+          // e.data contains received string.
+          //output("onmessage: " + e.data);
+          console.log(e.data);
+          console.log(typeof(e.data));
+         // var scheduleJSON = JSON.parse(e.data.replace(/^\s+|\s+$/g, ""));
+         if(isLoadingPlaylistTable){
+         var replacement = e.data.replace(/'/g, '"');
+         console.log(replacement);
+         var scheduleJSON = JSON.parse(replacement);
+          myBooks = scheduleJSON.schedules;
+          CreateTableFromJSON();
+          isLoadingPlaylistTable = false;
+        }
+        };
+        
+        ws.onclose = function() {
+          output("onclose");
+        };
+
+        ws.onerror = function(e) {
+          output("onerror");
+          console.log(e)
+        };
+
+      }
 
 
-   </head>	   
-   <body onload="init();">
-    <div id="title">Lejátszási listák</div>
-    <div>
-    <button onclick="onGoBackToMain(); return false;">Vissza a Főmenübe</button>
-  </div>
-  <div id="log"></div>
-</body>
+      //  const loadScheduleTable= async () =>{
+        function loadScheduleTable() {
+          isLoadingPlaylistTable = true;
+        ws.send("RequestPlaylist");
+      }
+      function CreateTableFromJSON() {
+
+
+       // loadScheduleTable()
+        //var myBooks = loadJSON();
+        
+
+        // EXTRACT VALUE FOR HTML HEADER. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+        var col = [];
+        for (var i = 0; i < myBooks.length; i++) {
+            for (var key in myBooks[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < myBooks.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = myBooks[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+      }
+
+
+      function loadScheduleByID() {
+        var currentID = document.getElementById("id").value;
+        // iterate over each element in the array
+        for (var i = 0; i < myBooks.length; i++){
+          // look for the entry with a matching `code` value
+          if (myBooks[i]["ID"] == currentID){
+            // we found it
+            //Load every param to the corresponding slot in form
+            document.getElementById("playlistName").value = myBooks[i].playListName;
+            document.getElementById("type").value = myBooks[i].Type;
+            document.getElementById("day").value = myBooks[i].Day;
+            document.getElementById("hour").value = myBooks[i].Hour;
+            document.getElementById("min").value = myBooks[i].Minute;
+            document.getElementById("sec").value = myBooks[i].Second;
+          }
+        }
+      }
+
+      function saveNewSchedule() {
+        var newSchedule = {};
+        //Create ID and add tzo newSchedule
+        var newID = myBooks.length + 1;
+        newSchedule["ID"] = newID;
+
+        //read rest of the parameters
+        newSchedule.playListName = document.getElementById("playlistName").value;
+        newSchedule.Type = document.getElementById("type").value;
+        newSchedule.Day = document.getElementById("day").value;
+        newSchedule.Hour = document.getElementById("hour").value;
+        newSchedule.Minute = document.getElementById("min").value;
+        newSchedule.Second = document.getElementById("sec").value;
+
+        //Add it to current scheduleTable
+        myBooks.push(newSchedule);
+
+        //Make it to a sandable format, a.k.a. string
+        var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
+        var finalTable = {}
+        finalTable.schedules = myBooks;
+        var newScheduleTableSendable = updateScheduleTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newScheduleTableSendable);
+
+        CreateTableFromJSON();
+      }
+
+      function deleteScheduleById(){
+        var scheduleToDeleteID = document.getElementById("id").value;
+
+        for (var i = 0; i < myBooks.length; i++){
+          // look for the entry with a matching `code` value
+          if (myBooks[i]["ID"] == scheduleToDeleteID){
+            // we found it
+            //Delete object with this ID
+            myBooks.splice(i, 1);
+          }
+        }
+        //Modify IDs after the deleted one
+        for (var j = 0; j < myBooks.length; j++){
+          myBooks[j]["ID"] = j + 1;
+        }
+        var updateScheduleTableTag = "UpdateScheduleSEPARATOR";
+        var finalTable = {}
+        finalTable.schedules = myBooks;
+        var newScheduleTableSendable = updateScheduleTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newScheduleTableSendable);
+        CreateTableFromJSON();
+      }
+         
+      </script>
+
+
+  </head>	   
+  <body onload="init();">
+    <div id="title">Ütemezések</div>
+    <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
+    <FORM>
+      <TABLE BORDER="1">
+        <TR>
+          <TD>ID</TD>
+          <TD>
+            <INPUT TYPE="TEXT" id="id" SIZE="20">
+          </TD>
+        </TR>
+        <TR>
+          <TD>Lista Név</TD>
+          <TD><INPUT TYPE="TEXT" id="playlistName" SIZE="25"></TD>
+        </TR>
+        <TR>
+          <TD>Ütemezés Típusa</TD>
+          <TD><INPUT TYPE="TEXT" id="type" SIZE="25"></TD>
+        </TR>
+        <TR>
+          <TD>Nap</TD>
+          <TD><INPUT TYPE="TEXT" id="day" SIZE="25"></TD>
+        </TR>
+        <TR>
+          <TD>Óra</TD>
+          <TD><INPUT TYPE="TEXT" id="hour" SIZE="25"></TD>
+        </TR>
+        <TR>
+          <TD>Perc</TD>
+          <TD><INPUT TYPE="TEXT" id="min" SIZE="25"></TD>
+        </TR>
+        <TR>
+          <TD>Másodperc</TD>
+          <TD><INPUT TYPE="TEXT" id="sec" SIZE="25"></TD>
+        </TR>
+      </TABLE>
+      </FORM>
+      <button onclick="saveNewSchedule()">Mentés</button>
+      <button onclick="loadScheduleByID()">Betöltés</button>
+      <button onclick="deleteScheduleById()">Törlés</button>
+
+    <!-- <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" /> -->
+    <p id="showData"></p>
+  </body>
 </html>
