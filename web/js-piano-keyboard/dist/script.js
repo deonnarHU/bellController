@@ -48,6 +48,9 @@ function stopRecording(){
   let title = document.getElementById("songTitle").innerHTML;
   let recordedSong = recording.concat(title,"SEPARATOR",noteList,"SEPARATOR",noteTimeList);
   ws.send(recordedSong);
+  title = "";
+  noteList = [];
+  noteTimeList = [];
   document.getElementById("recoringInProgress").innerHTML = "Nincs Felvétel"
 }
 
