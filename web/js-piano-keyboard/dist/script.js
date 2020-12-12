@@ -31,6 +31,7 @@ function setBellOne(){
   isSetup = true;
   document.getElementById("bellOneCode").innerHTML = "Hangra vár";
   // You can send message to the Web Socket using ws.send.
+  //sajt
 }
 
 let noteList = []
