@@ -58,6 +58,7 @@
           songlist = songlistJSON.songs;
           CreateTableFromJSON();
           CreateSonglistTableFromJSON();
+          CreateNewPlaylistTableFromJSON();
           isLoadingPlaylistTable = false;
         }
         };
@@ -240,7 +241,7 @@
 
       
 
-      function CreateSonglistTableFromJSON() {
+      function CreateNewPlaylistTableFromJSON() {
         // EXTRACT VALUE FOR HTML HEADER. 
         // ('Book ID', 'Book Name', 'Category' and 'Price')
         var col = [];
