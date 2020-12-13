@@ -336,6 +336,16 @@
         }
         newPlaylistEntry.songs = newPlaylistSongs;
         myBooks.push(newPlaylistEntry);
+
+        //Make it to a sandable format, a.k.a. string
+        var updatePlaylistTableTag = "UpdatePlaylistSEPARATOR";
+        var finalTable = {}
+        finalTable.playlists = myBooks;
+        var newPlaylistTableSendable = updatePlaylistTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newPlaylistTableSendable);
+
+
         CreateTableFromJSON();
       }
 
