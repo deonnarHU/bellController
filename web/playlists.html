@@ -339,14 +339,23 @@
             <INPUT TYPE="TEXT" id="id" SIZE="20">
           </TD>
         </TR>
-        <TR>
-          <TD>Szám Cím</TD>
-          <TD><INPUT TYPE="TEXT" id="playlistName" SIZE="25"></TD>
-        </TR>
       </TABLE>
       </FORM>
       <button onclick="addSongToNewPlaylist()">Hozzáadás</button>
       <button onclick="removeSongFromNewPlaylist()">Törlés</button>
+      <FORM>
+        <TABLE BORDER="1">
+          <TR>
+            <TD>Lista Név</TD>
+            <TD>
+              <INPUT TYPE="TEXT" id="newPlaylistName" SIZE="20">
+            </TD>
+          </TR>
+        </TABLE>
+        </FORM>
+        <button onclick="removeSongFromNewPlaylist()">Név mentése</button>
+        <div>Új lista neve</div>
+      
     </div></div>
       <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
