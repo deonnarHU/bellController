@@ -22,6 +22,7 @@
 
       var ws;
       var myBooks;
+      var songlist;
       var isLoadingPlaylistTable = false;
 
       function onGoBackToMain() {
@@ -48,19 +49,23 @@
          if(isLoadingPlaylistTable){
          var replacement = e.data.replace(/'/g, '"');
          console.log(replacement);
+         var receivedJSONs = replacement.split("SEPARATOR");
+         myBooks = receivedJSONs[0];
+         songlist = receivedJSONs[1];
          var scheduleJSON = JSON.parse(replacement);
-          myBooks = scheduleJSON.playlists;
+          myBooks = scheduleJSON.playlists; q
           CreateTableFromJSON();
+          CreateSonglistTableFromJSON();
           isLoadingPlaylistTable = false;
         }
         };
         
         ws.onclose = function() {
-          output("onclose");
+         // output("onclose");
         };
 
         ws.onerror = function(e) {
-          output("onerror");
+         // output("onerror");
           console.log(e)
         };
 
