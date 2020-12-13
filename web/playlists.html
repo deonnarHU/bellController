@@ -377,7 +377,13 @@
         CreateTableFromJSON();
       }
 
+      function deleteSongById(){
+        //Remove from songlist
+        var songToDeleteID = document.getElementById(songIDToDelete).value;
+        //Send delete request to server
 
+        //Update songlist display
+      }
 
 
          
@@ -419,6 +425,17 @@
     </div></div>
       <button onclick="saveNewPlaylist()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
+      <FORM>
+        <TABLE BORDER="1">
+          <TR>
+            <TD>Szám ID</TD>
+            <TD>
+              <INPUT TYPE="TEXT" id="songIDToDelete" SIZE="20">
+            </TD>
+          </TR>
+        </TABLE>
+        </FORM>
+        <button onclick="deleteSongById()">Végleges Törlés</button>
       <FORM>
         <TABLE BORDER="1">
           <TR>
