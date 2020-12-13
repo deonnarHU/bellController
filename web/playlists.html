@@ -317,11 +317,26 @@
           newPlaylist[j]["ID"] = newIDforEntry.toString()
         }
         isNewPlaylistChanged = true;
+        isLoadingPlaylistTable = true;
         CreateNewPlaylistTableFromJSON();
       }
 
       function saveNewPlaylistName(){
         document.getElementById("newPlaylistNameDisplay").innerHTML = document.getElementById("newPlaylistName").value;
+      }
+
+      function saveNewPlaylist(){
+        var newPlaylistEntry = {};
+        var newPlaylistID = myBooks.length + 1;
+        newPlaylistEntry["ID"] = newPlaylistID.toString();
+        newPlaylistEntry.playlistName = document.getElementById("newPlaylistNameDisplay").innerHTML;
+        var newPlaylistSongs = []
+        for(i = 0; i < newPlaylist.length; i++){
+          newPlaylistSongs.push(newPlaylist[i].songName);
+        }
+        newPlaylistEntry.songs = newPlaylistSongs;
+        myBooks.push(newPlaylistEntry);
+        CreateTableFromJSON();
       }
 
          
@@ -361,7 +376,7 @@
         <div id="newPlaylistNameDisplay">NINCS NÉV</div>
       
     </div></div>
-      <button onclick="saveNewSchedule()">Mentés</button>
+      <button onclick="saveNewPlaylist()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
       <button onclick="deleteScheduleById()">Törlés</button>
 
