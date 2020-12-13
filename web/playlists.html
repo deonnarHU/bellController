@@ -291,7 +291,8 @@
           //Iterate trough songlist to find this song
           for(var k = 0; k < songlist.length; k++){
             if(songlist[k]["ID"] == songToAddID){
-              songToAdd["ID"] = "something";
+              var newID = newPlaylist.length + 1;
+              songToAdd["ID"] = newID.toString();
               songToAdd.songName = songlist[k].songName;
               songToAdd.length = songlist[k].length;
             }
