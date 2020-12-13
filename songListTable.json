@@ -1,12 +1,10 @@
 {
     "songs": [
         {
-            "ID": "1",
             "songName": "sajtos",
             "length": 4689
         },
         {
-            "ID": "2",
             "songName": "sajtos2",
             "length": 28940
         }
