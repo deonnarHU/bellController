@@ -237,12 +237,6 @@
         CreateTableFromJSON();
       }
 
-
-
-
-
-      
-
       function CreateNewPlaylistTableFromJSON() {
         // EXTRACT VALUE FOR HTML HEADER. 
         // ('Book ID', 'Book Name', 'Category' and 'Price')
@@ -395,7 +389,12 @@
           songlist[j]["ID"] = j + 1;
         }
         //Send delete request to server
-
+        var updateSonglistTableTag = "UpdateSonglistSEPARATOR";
+        var finalTable = {}
+        finalTable.songs = songlist;
+        var newSonglistTableSendable = updateSonglistTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newSonglistTableSendable);
         //Update songlist display
         CreateSonglistTableFromJSON();
       }
