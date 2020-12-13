@@ -1,14 +1,1 @@
-{
-    "songs": [
-        {
-            "ID": "1",
-            "songName": "sajtos",
-            "length": 4689
-        },
-        {
-            "ID": "2",
-            "songName": "sajtos2",
-            "length": 28940
-        }
-    ]
-}
+{"songs": [{"ID": 1, "songName": "sajtos", "length": 4689}, {"ID": 2, "songName": "kacsa", "length": 6203}, {"ID": 3, "songName": "majom", "length": 4159}, {"ID": 4, "songName": "kutya", "length": 3258}, {"ID": 5, "songName": "pulyka", "length": 7830}]}

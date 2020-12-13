@@ -31,12 +31,18 @@ def readSong(songName):
 
 def startNote(x):
     #print("startingu")
-    noteSelector(x).off()
+    if(noteSelector(x) == "Note exist NO"):
+        print("no note")
+    else:
+        noteSelector(x).off()
     return 0
 
 def stopNote(x):
     #print("stopperino")
-    noteSelector(x).on()
+    if(noteSelector(x) == "Note exist NO"):
+        print("no note")
+    else:
+        noteSelector(x).on()
     return 0
 
 def noteSelector(x):

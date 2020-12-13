@@ -1,14 +1,1 @@
-{
-   "playlists": [
-      {
-         "ID": "1",
-         "playlistName": "playlist0001",
-         "songs": ["áűúőóüöéíyqau úőpőpéá.json", "song0003.json", "song0002.json"] 
-      },
-      {
-         "ID": "2",
-         "playlistName": "playlist0002",
-         "songs": ["sajtos.json", "sajtos2.json"] 
-      }
-   ]
-}
+{"playlists": [{"ID": 1, "playlistName": "kacsadal", "songs": ["kacsa", "kacsa"]}, {"ID": 2, "playlistName": "sajt eposz", "songs": ["sajtos", "sajtos", "sajtos"]}, {"ID": 3, "playlistName": "\u00e1llatfarm", "songs": ["majom", "kacsa"]}, {"ID": 4, "playlistName": "cucc", "songs": ["kacsa", "kutya"]}, {"ID": "5", "playlistName": "dolgok", "songs": ["pulyka", "kutya"]}]}
