@@ -302,6 +302,19 @@
           CreateNewPlaylistTableFromJSON();
       }
 
+      function removeSongFromNewPlaylist(){
+        var songToRemoveID = document.getElementById("id").value;
+
+        //Iterate trough newPlaylist to find song to delete
+        for(var i = 0; k < newPlaylist.length; i++){
+          if(newPlaylist[i]["ID"] == songToRemoveID){
+            newPlaylist.splice(i,1);
+          }
+        }
+        isNewPlaylistChanged = true;
+        CreateNewPlaylistTableFromJSON();
+      }
+
          
       </script>
 
