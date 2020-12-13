@@ -320,6 +320,10 @@
         CreateNewPlaylistTableFromJSON();
       }
 
+      function saveNewPlaylistName(){
+        document.getElementById("newPlaylistNameDisplay").innerHTML = document.getElementById("newPlaylistName").value;
+      }
+
          
       </script>
 
@@ -353,8 +357,8 @@
           </TR>
         </TABLE>
         </FORM>
-        <button onclick="removeSongFromNewPlaylist()">Név mentése</button>
-        <div>Új lista neve</div>
+        <button onclick="saveNewPlaylistName()">Név mentése</button>
+        <div id="newPlaylistNameDisplay">NINCS NÉV</div>
       
     </div></div>
       <button onclick="saveNewSchedule()">Mentés</button>
