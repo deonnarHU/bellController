@@ -380,6 +380,20 @@
       function deleteSongById(){
         //Remove from songlist
         var songToDeleteID = document.getElementById(songIDToDelete).value;
+
+        for (var i = 0; i < songlist.length; i++){
+          // look for the entry with a matching `code` value
+          if (songlist[i]["ID"] == songToDeleteID){
+            // we found it
+            //Delete object with this ID
+            songlist.splice(i, 1);
+          }
+        }
+
+        //Modify IDs after deletion
+        for (var j = 0; j < songlist.length; j++){
+          songlist[j]["ID"] = j + 1;
+        }
         //Send delete request to server
 
         //Update songlist display
