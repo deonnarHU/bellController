@@ -233,6 +233,49 @@
         ws.send(newScheduleTableSendable);
         CreateTableFromJSON();
       }
+
+
+
+
+
+      
+
+      function CreateSonglistTableFromJSON() {
+        // EXTRACT VALUE FOR HTML HEADER. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+        var col = [];
+        for (var i = 0; i < songlist.length; i++) {
+            for (var key in songlist[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < songlist.length; i++) {
+
+            tr = table.insertRow(-1);
+
+        }
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showPlaylistEntries");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+      }
+
+
+
+
+
          
       </script>
 
@@ -242,6 +285,7 @@
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
     <p id="showSonglist"></p>
+    <p id="showPlaylistEntries"></p>
     <FORM>
       <TABLE BORDER="1">
         <TR>
@@ -251,28 +295,8 @@
           </TD>
         </TR>
         <TR>
-          <TD>Lista Név</TD>
+          <TD>Szám Cím</TD>
           <TD><INPUT TYPE="TEXT" id="playlistName" SIZE="25"></TD>
-        </TR>
-        <TR>
-          <TD>Ütemezés Típusa</TD>
-          <TD><INPUT TYPE="TEXT" id="type" SIZE="25"></TD>
-        </TR>
-        <TR>
-          <TD>Nap</TD>
-          <TD><INPUT TYPE="TEXT" id="day" SIZE="25"></TD>
-        </TR>
-        <TR>
-          <TD>Óra</TD>
-          <TD><INPUT TYPE="TEXT" id="hour" SIZE="25"></TD>
-        </TR>
-        <TR>
-          <TD>Perc</TD>
-          <TD><INPUT TYPE="TEXT" id="min" SIZE="25"></TD>
-        </TR>
-        <TR>
-          <TD>Másodperc</TD>
-          <TD><INPUT TYPE="TEXT" id="sec" SIZE="25"></TD>
         </TR>
       </TABLE>
       </FORM>
