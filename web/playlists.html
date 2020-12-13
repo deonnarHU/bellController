@@ -266,6 +266,11 @@
 
             tr = table.insertRow(-1);
 
+            for (var j = 0; j < 1; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = songlist[i][col[j]];
+            }
+
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
         var divContainer = document.getElementById("showPlaylistEntries");
