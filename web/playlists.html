@@ -23,6 +23,8 @@
       var ws;
       var myBooks;
       var songlist;
+      var newPlaylist;
+      var isNewPlaylistChanged = false;
       var isLoadingPlaylistTable = false;
 
       function onGoBackToMain() {
@@ -261,16 +263,19 @@
             th.innerHTML = col[i];
             tr.appendChild(th);
         }
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < songlist.length; i++) {
+        if(isNewPlaylistChanged){
+          // ADD JSON DATA TO THE TABLE AS ROWS.
+          for (var i = 0; i < newPlaylist.length; i++) {
 
-            tr = table.insertRow(-1);
+              tr = table.insertRow(-1);
 
-           /* for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-              //  tabCell.innerHTML = songlist[i][col[j]];
-            }*/
+              for (var j = 0; j < col.length; j++) {
+                  var tabCell = tr.insertCell(-1);
+                  tabCell.innerHTML = newPlaylist[i][col[j]];
+              }
 
+          }
+        isNewPlaylistChanged = false;
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
         var divContainer = document.getElementById("showPlaylistEntries");
@@ -279,8 +284,22 @@
       }
 
 
-
-
+      function addSongToNewPlaylist(){
+          //Get the ID of the song we search for
+          var songToAddID = document.getElementById("id").innerHTML;
+          var songToAdd;
+          //Iterate trough songlist to find this song
+          for(var k = 0; k < songlist.length; k++){
+            if(songlist[k]["ID"] == songToAddID){
+              songToAdd["ID"] = "something";
+              songToAdd.songName = songlist[k].songName;
+              songToAdd.length = songlist[k].length;
+            }
+          }
+          newPlaylist.push(songToAdd);
+          isNewPlaylistChanged = true;
+          CreateNewPlaylistTableFromJSON();
+      }
 
          
       </script>
@@ -307,7 +326,7 @@
         </TR>
       </TABLE>
       </FORM>
-      <button>Hozzáadás</button>
+      <button onclick="addSongToNewPlaylist()">Hozzáadás</button>
       <button>Törlés</button>
     </div></div>
       <button onclick="saveNewSchedule()">Mentés</button>
