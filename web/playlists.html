@@ -50,10 +50,12 @@
          var replacement = e.data.replace(/'/g, '"');
          console.log(replacement);
          var receivedJSONs = replacement.split("SEPARATOR");
-         myBooks = receivedJSONs[0];
-         songlist = receivedJSONs[1];
-         var scheduleJSON = JSON.parse(replacement);
-          myBooks = scheduleJSON.playlists; q
+         //myBooks = receivedJSONs[0];
+         //songlist = receivedJSONs[1];
+         var scheduleJSON = JSON.parse(receivedJSONs[0]);
+         var songlistJSON = JSON.parse(receivedJSONs[1]);
+          myBooks = scheduleJSON.playlists;
+          songlist = songlistJSON.songs;
           CreateTableFromJSON();
           CreateSonglistTableFromJSON();
           isLoadingPlaylistTable = false;
