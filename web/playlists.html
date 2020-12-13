@@ -344,8 +344,6 @@
         var newPlaylistTableSendable = updatePlaylistTableTag.concat(JSON.stringify(finalTable));
         //Send it trough the websocket
         ws.send(newPlaylistTableSendable);
-
-
         CreateTableFromJSON();
       }
 
@@ -388,7 +386,17 @@
     </div></div>
       <button onclick="saveNewPlaylist()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
-      <button onclick="deleteScheduleById()">Törlés</button>
+      <FORM>
+        <TABLE BORDER="1">
+          <TR>
+            <TD>List ID</TD>
+            <TD>
+              <INPUT TYPE="TEXT" id="playlistIDToDelete" SIZE="20">
+            </TD>
+          </TR>
+        </TABLE>
+        </FORM>
+      <button onclick="deletePlaylistById()">Törlés</button>
 
     <!-- <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" /> -->
     <p id="showData"></p>
