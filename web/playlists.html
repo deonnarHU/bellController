@@ -347,6 +347,39 @@
         CreateTableFromJSON();
       }
 
+
+
+
+
+
+
+      function deletePlaylistById(){
+        var playlistToDeleteID = document.getElementById("playlistIDToDelete").value;
+
+        for (var i = 0; i < myBooks.length; i++){
+          // look for the entry with a matching `code` value
+          if (myBooks[i]["ID"] == playlistToDeleteID){
+            // we found it
+            //Delete object with this ID
+            myBooks.splice(i, 1);
+          }
+        }
+        //Modify IDs after the deleted one
+        for (var j = 0; j < myBooks.length; j++){
+          myBooks[j]["ID"] = j + 1;
+        }
+        var updateScheduleTableTag = "UpdatePlaylistSEPARATOR";
+        var finalTable = {}
+        finalTable.playlists = myBooks;
+        var newPlaylistTableSendable = updatePlaylistTableTag.concat(JSON.stringify(finalTable));
+        //Send it trough the websocket
+        ws.send(newPlaylistTableSendable);
+        CreateTableFromJSON();
+      }
+
+
+
+
          
       </script>
 
