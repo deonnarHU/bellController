@@ -165,7 +165,8 @@
             // we found it
             //Load every param to the corresponding slot in form
             document.getElementById("playlistName").value = myBooks[i].playListName;
-            document.getElementById("type").value = myBooks[i].Type;
+            docuemnt.getElementById("dropdownButton").innerHTML = myBooks[i].type
+            //document.getElementById("type").value = myBooks[i].Type;
             document.getElementById("day").value = myBooks[i].Day;
             document.getElementById("hour").value = myBooks[i].Hour;
             document.getElementById("min").value = myBooks[i].Minute;
@@ -182,7 +183,8 @@
 
         //read rest of the parameters
         newSchedule.playListName = document.getElementById("playlistName").value;
-        newSchedule.Type = document.getElementById("type").value;
+        newSchedule.Type = document.getElementsById("dropdownButton").innerHTML;
+       // newSchedule.Type = document.getElementById("type").value;
         newSchedule.Day = document.getElementById("day").value;
         newSchedule.Hour = document.getElementById("hour").value;
         newSchedule.Minute = document.getElementById("min").value;
