@@ -227,25 +227,23 @@
       }
 
 
-            /* When the user clicks on the button,
-      toggle between hiding and showing the dropdown content */
-      function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+      function dropDownOptionClick1(){
+        document.getElementById("dropdownButton").innerHTML = document.getElementById("Type1").innerHTML;
       }
 
-      // Close the dropdown menu if the user clicks outside of it
-      window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
-          }
-        }
+      function dropDownOptionClick2(){
+        document.getElementById("dropdownButton").innerHTML = document.getElementById("Type2").innerHTML;
       }
+
+      function dropDownOptionClick3(){
+        document.getElementById("dropdownButton").innerHTML = document.getElementById("Type3").innerHTML;
+      }
+
+      function dropDownOptionClick4(){
+        document.getElementById("dropdownButton").innerHTML = document.getElementById("Type4").innerHTML;
+      }
+
+
          
       </script>
 
@@ -269,11 +267,12 @@
         <TR>
           <TD>Ütemezés Típusa</TD>
           <TD><div class="dropdown">
-            <button class="dropbtn">Dropdown</button>
+            <button class="dropbtn"; id="dropdownButton"></button>
             <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              <a href="#"; id="Type1"; onclick="dropDownOptionClick()">Egyszer ma</a>
+              <a href="#"; id="Type2">Minden nap</a>
+              <a href="#"; id="Type3">Adott nap minden héten</a>
+              <a href="#"; id="Type4">Minden percben</a>
             </div>
           </div></TD>
         </TR>
