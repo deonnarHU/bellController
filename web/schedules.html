@@ -18,17 +18,12 @@
             font-weight:bold;
         }
 
-        .dropbtn {
-  background-color: #3498DB;
+        dropbtn {
+  background-color: #4CAF50;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
-  cursor: pointer;
-}
-
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
 }
 
 .dropdown {
@@ -41,7 +36,6 @@
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
-  overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -53,9 +47,11 @@
   display: block;
 }
 
-.dropdown a:hover {background-color: #ddd;}
+.dropdown-content a:hover {background-color: #ddd;}
 
-.show {display: block;}
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
     </style>
       <script type="text/javascript">
 
@@ -273,8 +269,8 @@
         <TR>
           <TD>Ütemezés Típusa</TD>
           <TD><div class="dropdown">
-            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-            <div id="myDropdown" class="dropdown-content">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
               <a href="#">Link 1</a>
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
