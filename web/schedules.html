@@ -57,6 +57,7 @@
 
       var ws;
       var myBooks;
+      var songlist;
       var isLoadingScheduleTable = false;
 
       function onGoBackToMain() {
@@ -84,9 +85,19 @@
          if(isLoadingScheduleTable){
          var replacement = e.data.replace(/'/g, '"');
          console.log(replacement);
-         var scheduleJSON = JSON.parse(replacement);
-          myBooks = scheduleJSON.schedules;
+
+
+         var receivedJSONs = replacement.split("SEPARATOR");        
+         var scheduleJSON = JSON.parse(receivedJSONs[0]);
+         var playlistJSON = JSON.parse(receivedJSONs[1]);
+         myBooks = scheduleJSON.schedules;
+         playlist = songlistJSON.playlists;
+
+
+         //var scheduleJSON = JSON.parse(replacement);
+        //  myBooks = scheduleJSON.schedules;
           CreateTableFromJSON();
+          CreatePlaylistTableFromJSON();
           isLoadingScheduleTable = false;
         }
         };
@@ -247,6 +258,49 @@
       }
 
 
+
+
+      function CreatePlaylistTableFromJSON() {
+        // EXTRACT VALUE FOR HTML HEADER. 
+        // ('Book ID', 'Book Name', 'Category' and 'Price')
+        var col = [];
+        for (var i = 0; i < playlist.length; i++) {
+            for (var key in playlist[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+
+        // CREATE DYNAMIC TABLE.
+        var table = document.createElement("table");
+
+        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < playlist.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = playlist[i][col[j]];
+            }
+        }
+
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+      }
          
       </script>
 
@@ -255,6 +309,7 @@
   <body onload="init();">
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
+    <p id="showSonglist"></p>
     <FORM>
       <TABLE BORDER="1">
         <TR>
