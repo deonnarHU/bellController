@@ -309,7 +309,8 @@
   <body onload="init();">
     <div id="title">Ütemezések</div>
     <button onclick="onGoBackToMain();">Vissza a Főmenübe</button>
-    <p id="showPlaylist"></p>
+    <div><div style="display:inline-block;vertical-align:top"><<p id="showPlaylist"></p></div>
+    <div style="display:inline-block;vertical-align:top">
     <FORM>
       <TABLE BORDER="1">
         <TR>
@@ -352,6 +353,7 @@
         </TR>
       </TABLE>
       </FORM>
+    </div></div>
       <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
       <button onclick="deleteScheduleById()">Törlés</button>
