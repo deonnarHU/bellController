@@ -4,6 +4,8 @@ import json
 #print("kacsatár és csacsitron")
 offset = 2000
 
+def playSingleNote(x):
+    songPlayer.playSingleNote(x)
 
 def readPlaylist(playlistName):
     #currentPlaylist
@@ -28,7 +30,8 @@ def playPlaylist(playlistName):
     for x in playlist["songs"]:
         #with open(playlist["songs"][i]) as g:
         print(x)
-        with open("./songs/" + x) as g:
+        title = "./songs/" + x + ".json"
+        with open(title) as g:
             currentSong = json.load(g)
         #songPlayer.playSong(playlist["songs"][i], i*offset, sumPreviousSongLength)
         songPlayer.playSong(x, i*offset, sumPreviousSongLength)

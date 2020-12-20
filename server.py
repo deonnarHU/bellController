@@ -4,7 +4,8 @@ from gpiozero import LED
 from time import sleep
 from threading import Timer
 import time
-import notePlayer
+#import notePlayer
+import scheduler
 
 noteMap = {
     "B3": "1",
@@ -41,7 +42,8 @@ def message_received(client, server, message):
     if(splitMessage[0] == "Play"):
         #print(splitMessage[1])
         #notePlayer.playNote(noteMap.get(splitMessage[1]))
-        notePlayer.playNote(splitMessage[1])
+        scheduler.playSingleNote(splitMessage[1])
+        #notePlayer.playNote(splitMessage[1])
         
     elif(splitMessage[0] == "UpdateSchedule"):
         #Update scheduleTable
@@ -51,6 +53,7 @@ def message_received(client, server, message):
         
         with open("./scheduleTable.json", "w") as outfile:
             json.dump(updatedSchedule,outfile)
+        scheduler.updateScheduler()
             
     elif(splitMessage[0] == "UpdatePlaylist"):
         #Update playlistTable
@@ -72,7 +75,10 @@ def message_received(client, server, message):
         #Load scheduletable
         with open("./scheduleTable.json") as f:
             scheduleTable = json.load(f)
-        server.send_message(client, str(scheduleTable))
+        with open("./playlistTable.json") as g:
+            playlistTable = json.load(g)
+        finalData = str(scheduleTable) + "SEPARATOR" + str(playlistTable)   
+        server.send_message(client, finalData)
         
     elif(splitMessage[0] == "RequestPlaylist"):
         #Load playlisttable
@@ -92,7 +98,7 @@ def message_received(client, server, message):
          songNoteTimeList = []
          startTime = int(songNoteTimeListRaw[0])
          i = 0
-         print (songNoteTimeListRaw)
+         #print (songNoteTimeListRaw)
          for x in songNoteTimeListRaw:
              songNoteTimeList.append(int(x) - startTime)
          i = i+1
@@ -117,7 +123,7 @@ def message_received(client, server, message):
         #Open songlist file
          with open("./songlistTable.json") as f:
              songlistTable = json.load(f)
-             print(songlistTable)
+             #print(songlistTable)
         #Check if song with name already existed
          didSongExist = 0
          for k in songlistTable["songs"]:
@@ -130,53 +136,16 @@ def message_received(client, server, message):
              newSongEntryForList["ID"] = len(songlistTable["songs"]) + 1 
              newSongEntryForList["songName"] = splitMessage[1]
              newSongEntryForList["length"] = songLength
-             print(newSongEntryForList)
+             #print(newSongEntryForList)
             #Add new entry to list
              songlistTable["songs"].append(newSongEntryForList)
-         print(songlistTable)
+         #print(songlistTable)
         #Rewrite songlist file
          with open("./songlistTable.json", "w") as outfile:
              json.dump(songlistTable,outfile)
              
     return 0
 
-'''def startNote(x):
-    #print("startingu")
-    noteSelector(x).off()
-    return 0
-
-def stopNote(x):
-    #print("stopperino")
-    noteSelector(x).on()
-    return 0
-
-def noteSelector(x):
-    print("X in noteSelector = ", x)
-    switcher = {
-        "1": led1,
-        "2": led2,
-        "3": led3,
-        "4": led4
-        }
-    switchResult = switcher.get(x)
-    print("in switcher:" , switchResult)
-    return switcher.get(x,led1)
-
-def playNote(x):
-    print ("X = ", x)
-    starter = Timer(0, startNote, [x])
-    stopper = Timer(0.1, stopNote, [x])
-    starter.start()
-    stopper.start()
-
-led1 = LED(17)
-led2 = LED(27)
-led3 = LED(22)
-led4 = LED(23)
-led1.on()
-led2.on()
-led3.on()
-led4.on()'''
 PORT=9001
 server = WebsocketServer(PORT, host='0.0.0.0')
 server.set_fn_new_client(new_client)
@@ -184,3 +153,5 @@ server.set_fn_client_left(client_left)
 server.set_fn_message_received(message_received)
 #server.send_message(send_message)
 server.run_forever()
+#scheduler.initScheduler()
+#scheduler.startScheduler()

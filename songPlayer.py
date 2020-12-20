@@ -25,7 +25,8 @@ noteStarters = {}
 noteStoppers = {}
 
 def readSong(songName):
-    with open("./songs/" + songName) as f:
+    title = "./songs/" + songName + ".json"
+    with open(title) as f:
         data = json.load(f)
     return data
 
@@ -59,6 +60,11 @@ def noteSelector(x):
     "C5": led10}
     return switcher.get(x,"Note exist NO")
 
+def playSingleNote(x):
+    starter = Timer(0, startNote, [x])
+    stopper = Timer(0.1, stopNote, [x])
+    starter.start()
+    stopper.start()
 
 def playSong(songTitle, offset, sumPreviousSongLength):
     song = readSong(songTitle)
