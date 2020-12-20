@@ -48,6 +48,7 @@ def message_received(client, server, message):
     elif(splitMessage[0] == "UpdateSchedule"):
         #Update scheduleTable
         updatedSchedule = json.loads(splitMessage[1])
+        scheduler.updateScheduler()
         #updatedSchedule["schedules"] = splitMessage[1]["schedules"]
         #print(updatedSchedule)
         
