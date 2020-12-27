@@ -4,7 +4,7 @@ var isSetup = false;
 function init() {
 
   // Connect to Web Socket
-  ws = new WebSocket("ws://192.168.91.127:9001/");
+  ws = new WebSocket("ws://" + location.host + ":9001/");
 
   // Set event handlers.
   ws.onopen = function() {

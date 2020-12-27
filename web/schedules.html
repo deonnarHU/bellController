@@ -68,7 +68,7 @@
       function init() {
 
         // Connect to Web Socket
-        ws = new WebSocket("ws://192.168.91.127:9001/");
+        ws = new WebSocket("ws://" + location.host + ":9001/");
 
         // Set event handlers.
         ws.onopen = function() {
@@ -87,7 +87,9 @@
          console.log(replacement);
 
 
-         var receivedJSONs = replacement.split("SEPARATOR");        
+         var receivedJSONs = replacement.split("SEPARATOR"); 
+         console.log("receivedJSONs:");
+         console.log(receivedJSONs);
          var scheduleJSON = JSON.parse(receivedJSONs[0]);
          var playlistJSON = JSON.parse(receivedJSONs[1]);
          myBooks = scheduleJSON.schedules;
