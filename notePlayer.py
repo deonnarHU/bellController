@@ -60,6 +60,6 @@ def noteSelector(x):
 
 def playNote(x):
     starter = Timer(0, startNote, [x])
-    stopper = Timer(0.1, stopNote, [x])
+    stopper = Timer(0.08, stopNote, [x])
     starter.start()
     stopper.start()

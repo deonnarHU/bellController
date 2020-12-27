@@ -3,26 +3,42 @@ from time import sleep
 from threading import Timer
 import time
 import json
+import serial
 
-led1 = LED(17)
-led2 = LED(27)
-led3 = LED(22)
-led4 = LED(23)
-led5 = 5
-led6 = 6
-led7 = 7
-led8 = 8
-led9 = 9
-led10 = 10
+led1 = LED(5)
+led2 = LED(6)
+led3 = LED(13)
+led4 = LED(19)
+led5 = LED(7)
+led6 = LED(26)
+led7 = LED(21)
+led8 = LED(20)
+led9 = LED(16)
+led10 = LED(12)
 led1.on()
 led2.on()
 led3.on()
 led4.on()
+led5.on()
+led6.on()
+led7.on()
+led8.on()
+led9.on()
+led10.on()
 
 #h = [1,3,4,1,1]
 #ht = [120,120,780,1780,2780]
 noteStarters = {}
 noteStoppers = {}
+
+ser = serial.Serial(
+        port='/dev/ttyS0', #Replace ttyS0 with ttyAM0 for Pi1,Pi2,Pi0
+        baudrate = 31250,
+        parity=serial.PARITY_NONE,
+        stopbits=serial.STOPBITS_ONE,
+        bytesize=serial.EIGHTBITS,
+        timeout=1
+)
 
 def readSong(songName):
     title = "./songs/" + songName + ".json"
@@ -36,6 +52,9 @@ def startNote(x):
         print("no note")
     else:
         noteSelector(x).off()
+        ser.write(b'\x90')
+        ser.write(serialNoteSelector(x))
+        ser.write(b'\x45')
     return 0
 
 def stopNote(x):
@@ -44,6 +63,9 @@ def stopNote(x):
         print("no note")
     else:
         noteSelector(x).on()
+        ser.write(b'\x90')
+        ser.write(serialNoteSelector(x))
+        ser.write(b'\x00')
     return 0
 
 def noteSelector(x):
@@ -59,6 +81,20 @@ def noteSelector(x):
     "B4": led9,
     "C5": led10}
     return switcher.get(x,"Note exist NO")
+
+def serialNoteSelector(x):
+    switcher = {
+    "B3": b'\x3B', #59
+    "C4": b'\x3C', #60
+    "D4": b'\x3E', #62
+    "E4": b'\x40', #64
+    #"F4": b'\x41', #65
+    "F#4": b'\x42', #66
+    "G4": b'\x43', #67
+    "A4": b'\x45', #69
+    "B4": b'\x47', #71
+    "C5": b'\x48'} #72
+    return switcher.get(x,"Serial-Note exist NO")
 
 def playSingleNote(x):
     starter = Timer(0, startNote, [x])
