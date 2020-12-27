@@ -218,6 +218,23 @@
         CreateTableFromJSON();
       }
 
+      function instantPlay() {
+        var today = new Date(today.getTime() + 2000); //add 5sec to current time
+        var listLength= myBooks.length;
+        loadScheduleByID();
+        document.getElementById("dropdownButton").innerHTML = "Egyszer ma";
+        document.getElementById("day").value = "monday";
+        document.getElementById("hour").value = today.getHours();
+        document.getElementById("min").value = today.getMinutes();
+        document.getElementById("sec").value = today.getSeconds();
+        saveNewSchedule();
+        if (listLength + 1 == myBooks.length) {
+          document.getElementById("id").value = myBooks.length;
+          setTimeout(deleteScheduleById(), 3000);
+        }
+      }
+        
+
       function deleteScheduleById(){
         var scheduleToDeleteID = document.getElementById("id").value;
 
@@ -359,6 +376,7 @@
       <button onclick="saveNewSchedule()">Mentés</button>
       <button onclick="loadScheduleByID()">Betöltés</button>
       <button onclick="deleteScheduleById()">Törlés</button>
+      <button onclick="instantPlay()">Lejatszas</button>
 
     <!-- <input type="button" onclick="loadScheduleTable();" value="Create Table From JSON" /> -->
     <p id="showData"></p>
