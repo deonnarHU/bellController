@@ -200,9 +200,9 @@
         newSchedule.Type = document.getElementById("dropdownButton").innerHTML;
        // newSchedule.Type = document.getElementById("type").value;
         newSchedule.Day = document.getElementById("day").value;
-        newSchedule.Hour = document.getElementById("hour").value;
-        newSchedule.Minute = document.getElementById("min").value;
-        newSchedule.Second = document.getElementById("sec").value;
+        newSchedule.Hour = hourValidator(document.getElementById("hour").value);
+        newSchedule.Minute = minSecValidator(document.getElementById("min").value);
+        newSchedule.Second = minSecValidator(document.getElementById("sec").value);
 
         //Add it to current scheduleTable
         myBooks.push(newSchedule);
@@ -217,12 +217,60 @@
 
         CreateTableFromJSON();
       }
-
+      
+      function minSecValidator(text) {
+          if (text.length == 1 && isNumberChar(text)) {   
+              return "0" + text;
+          }
+          else if (text.length == 2) {
+              if (is0to5Char(text.charAt(0)) && isNumberChar(text.charAt(1))) {   
+                  return text;
+              }
+          }
+          else {
+              return "00";
+          }
+      }
+      function hourValidator(text) {
+          if (text.length == 1 && isNumberChar(text)) {   
+              return "0" + text;
+          }
+          else if (text.length == 2) {
+              if ((text.charAt(0) == '0' || text.charAt(0) == '1' || text.charAt(0) == '2' ) && isNumberChar(text.charAt(1))) {   
+                  return text;
+              }
+          }
+          else {
+              return "00";
+          }
+      }
+      
+      function is0to5Char(n) {
+          if ( n == '0' || n == '1' || n == '2' || n == '3' || n == '4' || n == '5') {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+      
+      function isNumberChar(n) {
+          if ( n == '0' || n == '1' || n == '2' || n == '3' || n == '4' || n == '5' || n == '6' || n == '7' || n == '8' || n == '9') {
+              return true;
+          }
+          else {
+              return false;
+          }
+      }
+         
       function instantPlay() {
-        var today = new Date(today.getTime() + 2000); //add 5sec to current time
+        var today = new Date();
+        today = new Date(today.getTime() + 2000); //add 5sec to current time
+        console.log(today);
         var listLength= myBooks.length;
         loadScheduleByID();
-        document.getElementById("dropdownButton").innerHTML = "Egyszer ma";
+        //document.getElementById("dropdownButton").innerHTML = "Egyszer ma";
+        document.getElementById("dropdownButton").innerHTML = document.getElementById("Type1").innerHTML;
         document.getElementById("day").value = "monday";
         document.getElementById("hour").value = today.getHours();
         document.getElementById("min").value = today.getMinutes();
@@ -230,7 +278,7 @@
         saveNewSchedule();
         if (listLength + 1 == myBooks.length) {
           document.getElementById("id").value = myBooks.length;
-          setTimeout(deleteScheduleById(), 3000);
+          setTimeout(function(){ deleteScheduleById();}, 10000); //min 6sec needed to fire the python schedule
         }
       }
         
